@@ -4,6 +4,7 @@ import SwiftUI
       @StateObject private var viewModel = ProductsViewModel()
       @Environment(CartManager.self) private var cartManager
       @State private var searchText = ""
+      
 
       var body: some View {
           NavigationStack {
@@ -13,6 +14,7 @@ import SwiftUI
 
                   ScrollView {
                       VStack(alignment: .leading, spacing: 20) {
+                          FeaturedSectionView(products: viewModel.products)
                           // Header
                           VStack(alignment: .leading, spacing: 16) {
                               Text("Discover")
