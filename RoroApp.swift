@@ -6,8 +6,8 @@ struct RoroApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(cart)   // inject CartManager into the app
+            RootView()
+                .environment(cart)
         }
     }
 }
