@@ -6,33 +6,58 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             Group {
+                
                 if vm.isLoading {
                     ProgressView("Loading…")
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else if let err = vm.errorMessage {
-                    VStack {
+                }
+                
+                else if let err = vm.errorMessage {
+                    VStack(spacing: 12) {
                         Text("Error: \(err)")
                             .foregroundColor(.red)
+                        
                         Button("Retry") {
-                            Task { await vm.loadAll() }
+                            Task {
+                                await vm.loadAll()
+                            }
                         }
                     }
-                } else {
+                }
+                
+                else {
                     List(vm.products) { p in
-                        HStack(spacing: 12) {
-                            AsyncImage(url: p.image) { ph in
-                                switch ph {
-                                case .empty: ProgressView()
-                                case .success(let img): img.resizable().scaledToFill()
-                                case .failure: Image(systemName: "photo")
-                                @unknown default: EmptyView()
+                        
+                        NavigationLink(destination: ProductDetailView(product: p)) {
+                            
+                            HStack(spacing: 12) {
+                                
+                                AsyncImage(url: p.image) { phase in
+                                    switch phase {
+                                    case .empty:
+                                        ProgressView()
+                                    case .success(let image):
+                                        image
+                                            .resizable()
+                                            .scaledToFill()
+                                    case .failure:
+                                        Image(systemName: "photo")
+                                    @unknown default:
+                                        EmptyView()
+                                    }
                                 }
-                            }
-                            .frame(width: 64, height: 64)
-                            .cornerRadius(8)
-                            VStack(alignment: .leading) {
-                                Text(p.title).font(.body).lineLimit(2)
-                                Text(String(format: "$%.2f", p.price)).font(.subheadline).foregroundColor(.accentColor)
+                                .frame(width: 64, height: 64)
+                                .cornerRadius(8)
+                                
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(p.title)
+                                        .font(.body)
+                                        .lineLimit(2)
+                                    
+                                    Text("$\(p.price, specifier: "%.2f")")
+                                        .font(.subheadline)
+                                        .foregroundColor(.accentColor)
+                                }
                             }
                         }
                     }
@@ -40,11 +65,13 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Home")
-            .task { await vm.loadAll() }
+            .task {
+                await vm.loadAll()
+            }
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View { ContentView() }
+#Preview {
+    ContentView()
 }

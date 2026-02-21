@@ -14,6 +14,7 @@
 		11B1C3EB2F4A30050023A6A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C3E92F4A30050023A6A3 /* ContentView.swift */; };
 		11B1C3EE2F4A32C20023A6A3 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C3ED2F4A32C20023A6A3 /* ProductService.swift */; };
 		11B1C3F12F4A34F90023A6A3 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C3F02F4A34F90023A6A3 /* ProductsViewModel.swift */; };
+		11B1C3F42F4A3B070023A6A3 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C3F32F4A3B070023A6A3 /* ProductDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		11B1C3E92F4A30050023A6A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		11B1C3ED2F4A32C20023A6A3 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		11B1C3F02F4A34F90023A6A3 /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
+		11B1C3F32F4A3B070023A6A3 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -85,6 +87,7 @@
 		11B1C3AD2F4A09FB0023A6A3 = {
 			isa = PBXGroup;
 			children = (
+				11B1C3F22F4A3AE70023A6A3 /* Views */,
 				11B1C3EF2F4A34DF0023A6A3 /* ViewModels */,
 				11B1C3EC2F4A329B0023A6A3 /* Networking */,
 				11B1C3E92F4A30050023A6A3 /* ContentView.swift */,
@@ -128,6 +131,14 @@
 				11B1C3F02F4A34F90023A6A3 /* ProductsViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		11B1C3F22F4A3AE70023A6A3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				11B1C3F32F4A3B070023A6A3 /* ProductDetailView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +288,7 @@
 				11B1C3E82F4A2EBB0023A6A3 /* RoroApp.swift in Sources */,
 				11B1C3F12F4A34F90023A6A3 /* ProductsViewModel.swift in Sources */,
 				11B1C3EB2F4A30050023A6A3 /* ContentView.swift in Sources */,
+				11B1C3F42F4A3B070023A6A3 /* ProductDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
