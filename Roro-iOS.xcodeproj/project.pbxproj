@@ -6,6 +6,16 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		11B1C3E52F4A2B2D0023A6A3 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C3E42F4A2B2D0023A6A3 /* Product.swift */; };
+		11B1C3E72F4A2EBB0023A6A3 /* RoroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C3E62F4A2EBB0023A6A3 /* RoroApp.swift */; };
+		11B1C3E82F4A2EBB0023A6A3 /* RoroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C3E62F4A2EBB0023A6A3 /* RoroApp.swift */; };
+		11B1C3EA2F4A30050023A6A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C3E92F4A30050023A6A3 /* ContentView.swift */; };
+		11B1C3EB2F4A30050023A6A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C3E92F4A30050023A6A3 /* ContentView.swift */; };
+		11B1C3EE2F4A32C20023A6A3 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C3ED2F4A32C20023A6A3 /* ProductService.swift */; };
+		11B1C3F12F4A34F90023A6A3 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C3F02F4A34F90023A6A3 /* ProductsViewModel.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		11B1C3C62F4A09FC0023A6A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,14 +37,14 @@
 		11B1C3B62F4A09FB0023A6A3 /* Roro-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Roro-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11B1C3C52F4A09FC0023A6A3 /* Roro-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Roro-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11B1C3CF2F4A09FC0023A6A3 /* Roro-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Roro-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		11B1C3E42F4A2B2D0023A6A3 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		11B1C3E62F4A2EBB0023A6A3 /* RoroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoroApp.swift; sourceTree = "<group>"; };
+		11B1C3E92F4A30050023A6A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		11B1C3ED2F4A32C20023A6A3 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
+		11B1C3F02F4A34F90023A6A3 /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		11B1C3B82F4A09FB0023A6A3 /* Roro-iOS */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Roro-iOS";
-			sourceTree = "<group>";
-		};
 		11B1C3C82F4A09FC0023A6A3 /* Roro-iOSTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Roro-iOSTests";
@@ -75,7 +85,11 @@
 		11B1C3AD2F4A09FB0023A6A3 = {
 			isa = PBXGroup;
 			children = (
-				11B1C3B82F4A09FB0023A6A3 /* Roro-iOS */,
+				11B1C3EF2F4A34DF0023A6A3 /* ViewModels */,
+				11B1C3EC2F4A329B0023A6A3 /* Networking */,
+				11B1C3E92F4A30050023A6A3 /* ContentView.swift */,
+				11B1C3E62F4A2EBB0023A6A3 /* RoroApp.swift */,
+				11B1C3E32F4A2A3C0023A6A3 /* Models */,
 				11B1C3C82F4A09FC0023A6A3 /* Roro-iOSTests */,
 				11B1C3D22F4A09FC0023A6A3 /* Roro-iOSUITests */,
 				11B1C3B72F4A09FB0023A6A3 /* Products */,
@@ -92,6 +106,30 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		11B1C3E32F4A2A3C0023A6A3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				11B1C3E42F4A2B2D0023A6A3 /* Product.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		11B1C3EC2F4A329B0023A6A3 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				11B1C3ED2F4A32C20023A6A3 /* ProductService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		11B1C3EF2F4A34DF0023A6A3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				11B1C3F02F4A34F90023A6A3 /* ProductsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +144,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				11B1C3B82F4A09FB0023A6A3 /* Roro-iOS */,
 			);
 			name = "Roro-iOS";
 			packageProductDependencies = (
@@ -175,6 +210,7 @@
 				TargetAttributes = {
 					11B1C3B52F4A09FB0023A6A3 = {
 						CreatedOnToolsVersion = 26.1.1;
+						LastSwiftMigration = 2610;
 					};
 					11B1C3C42F4A09FC0023A6A3 = {
 						CreatedOnToolsVersion = 26.1.1;
@@ -236,6 +272,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11B1C3E52F4A2B2D0023A6A3 /* Product.swift in Sources */,
+				11B1C3EE2F4A32C20023A6A3 /* ProductService.swift in Sources */,
+				11B1C3E82F4A2EBB0023A6A3 /* RoroApp.swift in Sources */,
+				11B1C3F12F4A34F90023A6A3 /* ProductsViewModel.swift in Sources */,
+				11B1C3EB2F4A30050023A6A3 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +284,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11B1C3E72F4A2EBB0023A6A3 /* RoroApp.swift in Sources */,
+				11B1C3EA2F4A30050023A6A3 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +433,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 98Q9R2495A;
@@ -422,6 +466,7 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
@@ -434,6 +479,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 98Q9R2495A;
