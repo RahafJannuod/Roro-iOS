@@ -2,6 +2,7 @@ import SwiftUI
 
   struct ProductDetailView: View {
       let product: Product
+      @Environment(CartManager.self) private var cart
 
       var body: some View {
           ScrollView {
@@ -69,7 +70,7 @@ import SwiftUI
 
                   // Add to Cart Button
                   Button(action: {
-                      // Add to cart action
+                      cart.add(product: product)
                   }) {
                       Text("Add to Cart")
                           .font(.headline)
