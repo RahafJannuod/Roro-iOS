@@ -4,16 +4,24 @@ struct RootView: View {
     var body: some View {
         TabView {
             ContentView()
-                .tabItem { Label("Home", systemImage: "house") }
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
 
             ProductListView()
-                .tabItem { Label("Products", systemImage: "shippingbox") }
+                .tabItem {
+                    Label("Products", systemImage: "shippingbox")
+                }
 
             CartView()
-                .tabItem { Label("Cart", systemImage: "cart") }
+                .tabItem {
+                    Label("Cart", systemImage: "cart")
+                }
 
             ProfileView()
-                .tabItem { Label("Profile", systemImage: "person.crop.circle") }
+                .tabItem {
+                    Label("Profile", systemImage: "person.crop.circle")
+                }
         }
     }
 }
