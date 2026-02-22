@@ -1,23 +1,19 @@
 import SwiftUI
 
-  struct RootView: View {
-      @Environment(CartManager.self) private var cartManager
+struct RootView: View {
+    var body: some View {
+        TabView {
+            ContentView()
+                .tabItem { Label("Home", systemImage: "house") }
 
-      var body: some View {
-          TabView {
-              Tab("Home", systemImage: "house.fill") {
-                  ContentView()
-              }
+            ProductListView()
+                .tabItem { Label("Products", systemImage: "shippingbox") }
 
-              Tab("Cart", systemImage: "cart.fill") {
-                  CartView()
-              }
-              .badge(cartManager.items.count)
-          }
-      }
-  }
+            CartView()
+                .tabItem { Label("Cart", systemImage: "cart") }
 
-  #Preview {
-      RootView()
-          .environment(CartManager())
-  }
+            ProfileView()
+                .tabItem { Label("Profile", systemImage: "person.crop.circle") }
+        }
+    }
+}

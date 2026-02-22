@@ -29,8 +29,7 @@ import Foundation
               }
 
               guard (200...299).contains(httpResponse.statusCode) else {
-                  throw NetworkError.httpError(statusCode:
-  httpResponse.statusCode)
+                  throw NetworkError.httpError(statusCode: httpResponse.statusCode)
               }
 
               do {
@@ -59,8 +58,7 @@ import Foundation
               }
 
               guard (200...299).contains(httpResponse.statusCode) else {
-                  throw NetworkError.httpError(statusCode:
-  httpResponse.statusCode)
+                  throw NetworkError.httpError(statusCode: httpResponse.statusCode)
               }
 
               do {

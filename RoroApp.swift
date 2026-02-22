@@ -1,13 +1,13 @@
 import SwiftUI
 
 @main
-struct RoroApp: App {
-    @State private var cart = CartManager()
+struct Roro_iOSApp: App {
+    @StateObject private var cartManager = CartManager()
 
     var body: some Scene {
         WindowGroup {
             RootView()
-                .environment(cart)
+                .environmentObject(cartManager) // هذا يوفّر cartManager لكل الواجهات
         }
     }
 }
