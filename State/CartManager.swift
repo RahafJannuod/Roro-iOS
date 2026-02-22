@@ -1,37 +1,30 @@
 import Foundation
 import Combine
 
+@MainActor
 final class CartManager: ObservableObject {
     struct CartItem: Identifiable, Equatable {
         let id: UUID
-        let productID: Int
-        let title: String
-        let price: Double
+        let product: Product
         var quantity: Int
 
-        init(productID: Int, title: String, price: Double, quantity: Int = 1) {
-            self.id = UUID()
-            self.productID = productID
-            self.title = title
-            self.price = price
-            self.quantity = quantity
-        }
-
+        // Equatable by id (you can change if you want product equality)
         static func == (lhs: CartItem, rhs: CartItem) -> Bool {
-            lhs.id == rhs.id
+            return lhs.id == rhs.id
         }
     }
 
     @Published private(set) var items: [CartItem] = []
 
+    // MARK: - Cart operations
+
     func add(product: Product, quantity: Int = 1) {
-        // افترض أن Product.id هو Int (عدّلي لو نوعه مختلف)
-        let pid = product.id
-        if let idx = items.firstIndex(where: { $0.productID == pid }) {
+        // إذا المنتج موجود نزيد الكمية، وإلا نضيف عنصر جديد
+        if let idx = items.firstIndex(where: { $0.product.id == product.id }) {
             items[idx].quantity += quantity
         } else {
-            let item = CartItem(productID: pid, title: product.title, price: product.price, quantity: quantity)
-            items.append(item)
+            let newItem = CartItem(id: UUID(), product: product, quantity: quantity)
+            items.append(newItem)
         }
     }
 
@@ -39,22 +32,36 @@ final class CartManager: ObservableObject {
         items.removeAll { $0.id == id }
     }
 
-    func updateQuantity(id: UUID, quantity: Int) {
-        guard let idx = items.firstIndex(where: { $0.id == id }) else { return }
-        if quantity <= 0 {
-            remove(id: id)
-        } else {
-            items[idx].quantity = quantity
-        }
+    func increase(id: UUID) {
+        guard let i = items.firstIndex(where: { $0.id == id }) else { return }
+        items[i].quantity += 1
     }
 
-    func totalPrice() -> Double {
-        items.reduce(0) { $0 + (Double($1.quantity) * $1.price) }
+    func decrease(id: UUID) {
+        guard let i = items.firstIndex(where: { $0.id == id }) else { return }
+        items[i].quantity = max(1, items[i].quantity - 1)
+        // لو تحب: لو صار 0 تحذف العنصر
+        // if items[i].quantity <= 0 { remove(id: id) }
     }
 
-    func totalCount() -> Int {
+    // MARK: - Totals
+
+    func subtotal() -> Double {
+        items.reduce(0) { $0 + ($1.product.price * Double($1.quantity)) }
+    }
+
+    func tax(rate: Double = 0.10) -> Double {
+        subtotal() * rate
+    }
+
+    func totalPrice(taxRate: Double = 0.10) -> Double {
+        subtotal() + tax(rate: taxRate)
+    }
+
+    // اختياري: دوال مساعدة
+    func countTotalItems() -> Int {
         items.reduce(0) { $0 + $1.quantity }
     }
 
-    func clear() { items.removeAll() }
+    // يمكنك إضافة حفظ محلي (UserDefaults) لاحقاً
 }

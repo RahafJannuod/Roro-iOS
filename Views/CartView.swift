@@ -5,69 +5,60 @@ struct CartView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                // نستخدم indices لتجنب ارتباك الـ ForEach/Binding
-                ForEach(cart.items.indices, id: \.self) { idx in
-                    let item = cart.items[idx]
+            VStack(spacing: 0) {
+                List {
+                    // نستخدم indices لكي نتمكن من onDelete بسهولة
+                    ForEach(0..<cart.items.count, id: \.self) { idx in
+                        let item = cart.items[idx]
+                        CartItemRow(item: item)
+                    }
+                    .onDelete { indexSet in
+                        for index in indexSet {
+                            let id = cart.items[index].id
+                            cart.remove(id: id)
+                        }
+                    }
+                }
+                .listStyle(.plain)
 
+                // Footer: subtotal / tax / total & checkout button
+                VStack(spacing: 12) {
                     HStack {
-                        // استخدمي الحقول المتوفرة في CartItem
-                        // في توصيف CartManager الذي اقترحناه، CartItem يملك `title` و `price`
-                        Text(item.title)
-                            .lineLimit(1)
-
+                        Text("Subtotal")
                         Spacer()
-
-                        Text("x\(item.quantity)")
-                        Text(String(format: "$%.2f", item.price * Double(item.quantity)))
+                        Text(String(format: "$%.2f", cart.subtotal()))
                     }
-                    .padding(.vertical, 8)
-                }
-                .onDelete { indexSet in
-                    // احذفي العناصر بناءً على المؤشرات
-                    for index in indexSet {
-                        let id = cart.items[index].id
-                        cart.remove(id: id)
+                    HStack {
+                        Text("Tax (10%)")
+                        Spacer()
+                        Text(String(format: "$%.2f", cart.tax()))
                     }
-                }
-            }
-            .navigationTitle("Cart")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Clear") { cart.clear() }
-                }
-            }
+                    Divider()
+                    HStack {
+                        Text("Total")
+                            .font(.headline)
+                        Spacer()
+                        Text(String(format: "$%.2f", cart.totalPrice()))
+                            .font(.title3)
+                            .fontWeight(.bold)
+                    }
 
-            VStack {
-                Spacer()
-                HStack {
-                    Text("Total:")
-                    Spacer()
-                    Text(String(format: "$%.2f", cart.totalPrice()))
-                        .font(.headline)
+                    Button {
+                        // action: checkout
+                    } label: {
+                        Text("Proceed to Checkout")
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.green)
+                            .cornerRadius(12)
+                    }
+                    .padding(.top, 8)
                 }
                 .padding()
+                .background(Color(UIColor.systemBackground))
             }
+            .navigationTitle("My Cart")
         }
     }
-}
-
-// Preview
-#Preview {
-    // نكوّن CartManager صغير للاختبار مع عنصر وهمي
-    let cm = CartManager()
-    // إضافة عنصر تجريبي لو أردتِ رؤية النتيجة في Preview
-    let sampleProduct = Product(
-        id: 1,
-        title: "Sample Product",
-        price: 29.99,
-        description: "Sample description",
-        category: "sample",
-        image: nil,
-        rating: nil
-    )
-    cm.add(product: sampleProduct)
-
-    return CartView()
-        .environmentObject(cm)
 }

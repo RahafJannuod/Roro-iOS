@@ -25,6 +25,7 @@
 		11B1C4062F4B29150023A6A3 /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C4052F4B29150023A6A3 /* ProductListView.swift */; };
 		11B1C4082F4B29CD0023A6A3 /* CategoriesGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C4072F4B29CD0023A6A3 /* CategoriesGridView.swift */; };
 		11B1C40D2F4B31160023A6A3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C40C2F4B31160023A6A3 /* ProfileView.swift */; };
+		11B1C40F2F4B47B50023A6A3 /* CartItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C40E2F4B47B50023A6A3 /* CartItemRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		11B1C4052F4B29150023A6A3 /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
 		11B1C4072F4B29CD0023A6A3 /* CategoriesGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesGridView.swift; sourceTree = "<group>"; };
 		11B1C40C2F4B31160023A6A3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		11B1C40E2F4B47B50023A6A3 /* CartItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -167,6 +169,7 @@
 				11B1C4052F4B29150023A6A3 /* ProductListView.swift */,
 				11B1C4072F4B29CD0023A6A3 /* CategoriesGridView.swift */,
 				11B1C40C2F4B31160023A6A3 /* ProfileView.swift */,
+				11B1C40E2F4B47B50023A6A3 /* CartItemRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				11B1C4002F4A45980023A6A3 /* FeaturedSectionView.swift in Sources */,
 				11B1C4042F4B1EF40023A6A3 /* ProductFiltersView.swift in Sources */,
 				11B1C3FB2F4A40EA0023A6A3 /* RootView.swift in Sources */,
+				11B1C40F2F4B47B50023A6A3 /* CartItemRow.swift in Sources */,
 				11B1C3EB2F4A30050023A6A3 /* ContentView.swift in Sources */,
 				11B1C3F92F4A3FE30023A6A3 /* CartView.swift in Sources */,
 				11B1C3F42F4A3B070023A6A3 /* ProductDetailView.swift in Sources */,

@@ -6,8 +6,8 @@ struct Roro_iOSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView()
-                .environmentObject(cartManager) // هذا يوفّر cartManager لكل الواجهات
+            RootView()                  // تأكدي أن RootView موجودة كـ View
+                .environmentObject(cartManager)
         }
     }
 }

@@ -1,6 +1,6 @@
 import SwiftUI
 
- struct FeaturedSectionView: View {
+struct FeaturedSectionView: View {
      let products: [Product]
 
      var body: some View {
@@ -13,8 +13,7 @@ import SwiftUI
              ScrollView(.horizontal, showsIndicators: false) {
                  HStack(spacing: 16) {
                      ForEach(products) { product in
-                         NavigationLink(destination: ProductDetailView(product:
-  product)) {
+                         NavigationLink(destination: ProductDetailView(product: product)) {
                              FeaturedCardView(product: product)
                          }
                          .buttonStyle(.plain)
@@ -26,7 +25,7 @@ import SwiftUI
      }
  }
 
- struct FeaturedCardView: View {
+struct FeaturedCardView: View {
      let product: Product
 
      var body: some View {
@@ -77,10 +76,9 @@ import SwiftUI
      }
  }
 
- #Preview {
+#Preview {
      NavigationStack {
-         FeaturedSectionView(products: [Product.example, Product.example,
- Product.example])
+         FeaturedSectionView(products: [Product.example, Product.example, Product.example])
              .background(Color.backgroundMain)
      }
  }
