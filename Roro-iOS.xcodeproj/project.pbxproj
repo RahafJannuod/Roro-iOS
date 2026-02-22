@@ -31,6 +31,7 @@
 		11B1C4152F4B71B90023A6A3 /* OrderHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C4142F4B71B90023A6A3 /* OrderHistoryView.swift */; };
 		11B1C4172F4B71CC0023A6A3 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C4162F4B71CC0023A6A3 /* RowView.swift */; };
 		11B1C4192F4B71E00023A6A3 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C4182F4B71E00023A6A3 /* APIClient.swift */; };
+		11B1C41B2F4BA0BE0023A6A3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1C41A2F4BA0BE0023A6A3 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		11B1C4142F4B71B90023A6A3 /* OrderHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryView.swift; sourceTree = "<group>"; };
 		11B1C4162F4B71CC0023A6A3 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 		11B1C4182F4B71E00023A6A3 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		11B1C41A2F4BA0BE0023A6A3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -184,6 +186,7 @@
 				11B1C4122F4B71A20023A6A3 /* EditProfileView.swift */,
 				11B1C4142F4B71B90023A6A3 /* OrderHistoryView.swift */,
 				11B1C4162F4B71CC0023A6A3 /* RowView.swift */,
+				11B1C41A2F4BA0BE0023A6A3 /* LoginView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				11B1C3E52F4A2B2D0023A6A3 /* Product.swift in Sources */,
 				11B1C4152F4B71B90023A6A3 /* OrderHistoryView.swift in Sources */,
 				11B1C3EE2F4A32C20023A6A3 /* ProductService.swift in Sources */,
+				11B1C41B2F4BA0BE0023A6A3 /* LoginView.swift in Sources */,
 				11B1C4062F4B29150023A6A3 /* ProductListView.swift in Sources */,
 				11B1C4192F4B71E00023A6A3 /* APIClient.swift in Sources */,
 				11B1C4022F4A753B0023A6A3 /* ProductListViewModel.swift in Sources */,
