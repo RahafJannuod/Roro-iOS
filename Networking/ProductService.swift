@@ -1,76 +1,78 @@
 import Foundation
 
-  enum NetworkError: Error {
-      case invalidURL
-      case invalidResponse
-      case httpError(statusCode: Int)
-      case decodingError
-      case networkError(Error)
-  }
+enum NetworkError: Error {
+    case invalidURL
+    case requestFailed(statusCode: Int)
+    case decodingError(Error)
+    case unknown(Error)
+}
 
-  class ProductService {
-      private let baseURL = "https://fakestoreapi.com"
-      private let decoder: JSONDecoder = {
-          let decoder = JSONDecoder()
-          decoder.keyDecodingStrategy = .convertFromSnakeCase
-          return decoder
-      }()
+@MainActor
+final class ProductService {
+    private let baseURL = "https://fakestoreapi.com"
+    private let decoder: JSONDecoder
 
-      func fetchProducts() async throws -> [Product] {
-          guard let url = URL(string: "\(baseURL)/products") else {
-              throw NetworkError.invalidURL
-          }
+    init() {
+        decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .useDefaultKeys
+        decoder.dateDecodingStrategy = .iso8601
+    }
 
-          do {
-              let (data, response) = try await URLSession.shared.data(from: url)
+    // GET /products
+    func fetchProducts() async throws -> [Product] {
+        guard let url = URL(string: "\(baseURL)/products") else {
+            throw NetworkError.invalidURL
+        }
+        return try await fetch(url: url)
+    }
 
-              guard let httpResponse = response as? HTTPURLResponse else {
-                  throw NetworkError.invalidResponse
-              }
+    // GET /products/{id}
+    func fetchProduct(id: Int) async throws -> Product {
+        guard let url = URL(string: "\(baseURL)/products/\(id)") else {
+            throw NetworkError.invalidURL
+        }
+        return try await fetch(url: url)
+    }
 
-              guard (200...299).contains(httpResponse.statusCode) else {
-                  throw NetworkError.httpError(statusCode: httpResponse.statusCode)
-              }
+    // GET /products/categories
+    func fetchCategories() async throws -> [String] {
+        guard let url = URL(string: "\(baseURL)/products/categories") else {
+            throw NetworkError.invalidURL
+        }
+        return try await fetch(url: url)
+    }
 
-              do {
-                  let products = try decoder.decode([Product].self, from: data)
-                  return products
-              } catch {
-                  throw NetworkError.decodingError
-              }
-          } catch let error as NetworkError {
-              throw error
-          } catch {
-              throw NetworkError.networkError(error)
-          }
-      }
+    // GET /products/category/{categoryName}
+    func fetchProductsByCategory(_ category: String) async throws -> [Product] {
+        // Encode category for URL (spaces, slashes)
+        guard let encoded = category.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
+              let url = URL(string: "\(baseURL)/products/category/\(encoded)") else {
+            throw NetworkError.invalidURL
+        }
+        return try await fetch(url: url)
+    }
 
-      func fetchProduct(id: Int) async throws -> Product {
-          guard let url = URL(string: "\(baseURL)/products/\(id)") else {
-              throw NetworkError.invalidURL
-          }
+    // Generic fetch helper
+    private func fetch<T: Decodable>(url: URL) async throws -> T {
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.timeoutInterval = 20
 
-          do {
-              let (data, response) = try await URLSession.shared.data(from: url)
+        do {
+            let (data, response) = try await URLSession.shared.data(for: request)
 
-              guard let httpResponse = response as? HTTPURLResponse else {
-                  throw NetworkError.invalidResponse
-              }
+            if let http = response as? HTTPURLResponse, !(200...299).contains(http.statusCode) {
+                throw NetworkError.requestFailed(statusCode: http.statusCode)
+            }
 
-              guard (200...299).contains(httpResponse.statusCode) else {
-                  throw NetworkError.httpError(statusCode: httpResponse.statusCode)
-              }
-
-              do {
-                  let product = try decoder.decode(Product.self, from: data)
-                  return product
-              } catch {
-                  throw NetworkError.decodingError
-              }
-          } catch let error as NetworkError {
-              throw error
-          } catch {
-              throw NetworkError.networkError(error)
-          }
-      }
-  }
+            do {
+                let decoded = try decoder.decode(T.self, from: data)
+                return decoded
+            } catch {
+                throw NetworkError.decodingError(error)
+            }
+        } catch {
+            throw NetworkError.unknown(error)
+        }
+    }
+}

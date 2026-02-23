@@ -78,7 +78,7 @@ struct FeaturedCardView: View {
 
 #Preview {
      NavigationStack {
-         FeaturedSectionView(products: [Product.example, Product.example, Product.example])
+         FeaturedSectionView(products: [Product.sample, Product.sample, Product.sample])
              .background(Color.backgroundMain)
      }
  }
