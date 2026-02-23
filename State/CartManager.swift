@@ -44,6 +44,10 @@ final class CartManager: ObservableObject {
         // if items[i].quantity <= 0 { remove(id: id) }
     }
 
+    func clear() {
+        items.removeAll()
+    }
+
     // MARK: - Totals
 
     func subtotal() -> Double {
