@@ -62,11 +62,29 @@ struct CartView: View {
                     // Alert التأكيد
                     .alert("Confirm Purchase", isPresented: $showingCheckoutAlert) {
                         Button("Confirm", role: .destructive) {
-                            // إجراء الشراء التجريبي: نولّد رقم طلب وهمي ونمسح العربة
-                            let orderNumber = "ORD-\(Int.random(in: 1000...9999))"
-                            lastOrderNumber = orderNumber
-                            cart.clear()
-                            showingSuccessSheet = true
+                            Task {
+                                // عرض مؤشر تحميل بسيط (اختياري)
+                                // ننشئ نسخة من العناصر قبل المسح
+                                let itemsToOrder = cart.items
+                                let total = cart.totalPrice()
+
+                                do {
+                                    // ننشئ الطلب على APIClient
+                                    let newOrder = try await APIClient.shared.createOrder(from: itemsToOrder, total: total)
+
+                                    // بعد نجاح الإنشاء نمسح العربة
+                                    cart.clear()
+
+                                    // نحفظ رقم الطلب لعرضه في شاشة النجاح
+                                    lastOrderNumber = newOrder.orderNumber
+
+                                    // نظهر شاشة النجاح
+                                    showingSuccessSheet = true
+                                } catch {
+                                    // في حال فشل الاتصال نعرض alert صغير أو نطبع الخطأ
+                                    print("Failed to create order: \(error)")
+                                }
+                            }
                         }
                         Button("Cancel", role: .cancel) { }
                     } message: {
